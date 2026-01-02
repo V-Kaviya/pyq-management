@@ -101,3 +101,19 @@ Use npm to install required Node packages.
 - Express.js
 - MySQL
 - Open-source community
+
+---
+
+## Author
+
+### Kaviya
+
+Computer Science Engineering Student
+
+🚀 Passionate about Frontend & Backend Development, AI-powered systems, and creating practical, real-world solutions 💙
+
+---
+
+## Support
+
+If you found this project useful, please give it a star ⭐ It really helps and motivates future improvements!
