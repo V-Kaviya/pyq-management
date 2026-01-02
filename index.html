@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Annamalai University - CSE Question Papers</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Quick inline style for logo and header */
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+      .header img {
+        height: 60px;
+        width: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- University Header -->
+      <div class="header">
+        <img src="images/au_logo.png" alt="Annamalai University Logo" />
+        <h1>Annamalai University - CSE Previous Year Question Papers</h1>
+      </div>
+
+      <!-- Upload Form -->
+      <div class="upload-box">
+        <h2>Upload Your Question Paper</h2>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+          <input
+            type="text"
+            name="subject"
+            placeholder="Subject Name"
+            required
+          />
+          <input type="number" name="year" placeholder="Year" required />
+          <input
+            type="number"
+            name="semester"
+            placeholder="Semester"
+            required
+          />
+          <input type="file" name="paper" required />
+          <button type="submit">Upload Paper</button>
+        </form>
+      </div>
+
+      <!-- View Papers -->
+      <div class="papers-box">
+        <h2>All Uploaded Papers</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>Year</th>
+              <th>Semester</th>
+              <th>Download</th>
+            </tr>
+          </thead>
+          <tbody id="data"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      fetch("/papers")
+        .then((res) => res.json())
+        .then((data) => {
+          let rows = "";
+          data.forEach((p) => {
+            rows += `
+            <tr>
+              <td>${p.subject}</td>
+              <td>${p.year}</td>
+              <td>${p.semester}</td>
+              <td><a href="/uploads/${p.file_name}" target="_blank">Download</a></td>
+            </tr>`;
+          });
+          document.getElementById("data").innerHTML = rows;
+        });
+    </script>
+  </body>
+</html>
